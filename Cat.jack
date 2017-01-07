@@ -5,20 +5,20 @@ class Cat
 	field int status;
 	field int size;
 	field String name;
-	constructor Cat new(String name)
+	constructor Cat new(String name1)
 	{
-		let this.name = name;
+		let name = name1;
 		let life = 1000;
 		let mana = 500;
-		let status = 0; //initial status is 0		
+		let status = 0;		
 		return this;
 	}
 	method void DrawCat(int x, int y)
 	{
-		let size = 16;
+		let size = 1333;
 		if(status = 0)
 		{
-			do Screen.drawRectangle(x + size, y + size, x - size, y - size);
+			do Screen.drawRectangle(x - size, y - size, x + size, y + size);
 		}
 		return ;
 	}
