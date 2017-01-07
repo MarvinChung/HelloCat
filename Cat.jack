@@ -1,0 +1,25 @@
+class Cat
+{
+	field int life;
+	field int mana;
+	field int status;
+	field int size;
+	field String name;
+	constructor Cat new(String name)
+	{
+		let this.name = name;
+		let life = 1000;
+		let mana = 500;
+		let status = 0; //initial status is 0		
+		return this;
+	}
+	method void DrawCat(int x, int y)
+	{
+		let size = 16;
+		if(status = 0)
+		{
+			do Screen.drawRectangle(x + size, y + size, x - size, y - size);
+		}
+		return ;
+	}
+}
