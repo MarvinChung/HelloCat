@@ -46,7 +46,7 @@ class Main
 		let p1 = Cat.new("p1");
 		let p2 = Cat.new("p2");
 		let gameover = 1;
-		let step = 1;
+		let step = 10;
 	
 		while(gameover = 1)
 		{
@@ -80,7 +80,7 @@ class Main
 				//right d
 			}
 			do Main.draw(p1x, p1y, p2x, p2y, p1, p2);
-			do Sys.wait(1);
+			do Sys.wait(100);
 			
 		}
 		return;
