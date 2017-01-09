@@ -33,7 +33,7 @@ class Main
 		var int step;
 		var Cat p1;
 		var Enemy small1;
-
+		var kan kan1;
 
 		let p1x = 30;
 		let small1x = 511 - p1x;
@@ -44,7 +44,7 @@ class Main
 		let step = 10;
 	
 		let small1 = Enemy.new();
-		
+		let kan1 = kan.new();
 		while(gameover = 1)
 		{
 			//for player
@@ -88,11 +88,9 @@ class Main
 				//kill the object	
 				
 			}
-			
-			
 			do small1.draw( small1x, small1y, 1);	
 			do p1.draw(p1x, p1y, 1);
-			
+			do kan1.drawkan();
 			do Sys.wait(100);
 						
 		}
