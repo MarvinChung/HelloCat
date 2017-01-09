@@ -1,0 +1,42 @@
+class Enemy
+{
+	field int life;
+	field int status;
+	field int size;
+	field String name;
+	field int normalAttack;
+	field int step;
+	constructor Enemy new()
+	{
+		let life = 100;
+		let normalAttack = 50;
+		let step = 5;
+		let size = 16;
+		return this;
+	}
+	method int suffer(int damage)
+	{
+		let life = life - damage;
+		if(life < 0 | life = 0)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}			
+	}
+	method int getstep(){
+		return step;
+	}
+	method void draw(int x, int y, boolean mode)
+	{
+		do Screen.setColor(mode);
+
+		if(status = 0)
+		{
+			do Screen.drawRectangle(x - size, y - size, x + size, y + size);
+		}
+		return ;
+	}
+}

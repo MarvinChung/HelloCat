@@ -13,35 +13,46 @@ class Main
 			return 0;
 		}
 	}
+	function int canmove( int myx, int myy, int p1x, int p1y){
+          if(myx<p1x+50){
+              return 1;   
+          }
+          else{
+              return 0;
+          }
+     }
+
 	function void main()
 	{
 		var int p1x;
 		var int p1y;
-		var int p2x;
-		var int p2y;
+		var int small1x;
+		var int small1y;
 		var int gameover;
 		var int keycode;
 		var int step;
 		var Cat p1;
-		var Cat p2;
-	
+		var Enemy small1;
+
+
 		let p1x = 30;
-		let p2x = 511 - p1x;
+		let small1x = 511 - p1x;
 		let p1y = 127;
-		let p2y = 127;
+		let small1y = 127;
 		let p1 = Cat.new("p1");
-		let p2 = Cat.new("p2");
 		let gameover = 1;
 		let step = 10;
 	
+		let small1 = Enemy.new();
+		
 		while(gameover = 1)
 		{
+			//for player
 			let keycode = Keyboard.keyPressed();
 			if((keycode = 87) & (Main.outside(p1x, p1y + step) = 0))
 			{
 				let keycode = 0;
 			    do p1.draw(p1x, p1y, 0);
-				do p2.draw(p2x, p2y, 0);
 				let p1y = p1y - step;
 				//up w
 			}
@@ -49,7 +60,6 @@ class Main
 			{
 				let keycode = 0;
 			    do p1.draw(p1x, p1y, 0);
-				do p2.draw(p2x, p2y, 0);
 				let p1y = p1y + step;
 				//down s
 			}
@@ -57,7 +67,6 @@ class Main
 			{
 				let keycode = 0;
 			    do p1.draw(p1x, p1y, 0);
-				do p2.draw(p2x, p2y, 0);
 				let p1x = p1x - step;
 				//left a
 			}
@@ -65,14 +74,27 @@ class Main
 			{
 				let keycode = 0;
 			    do p1.draw(p1x, p1y, 0);
-				do p2.draw(p2x, p2y, 0);
 				let p1x = p1x + step;
 				//right d
 			}
-			do p1.draw(p1x, p1y, 1);
-			do p2.draw(p2x, p2y, 1);
-			do Sys.wait(100);
 			
+			//for AI
+			if((Main.outside(small1x-small1.getstep(),small1y)=0) & (Main.canmove(small1x,small1y,p1x,p1y))){
+				do small1.draw( small1x, small1y, 0);
+				let small1x = small1x - small1.getstep();
+				//smallenemy walks left	
+			}			
+			if((Main.outside(small1x-small1.getstep(),small1y)=0)){
+				//kill the object	
+				
+			}
+			
+			
+			do small1.draw( small1x, small1y, 1);	
+			do p1.draw(p1x, p1y, 1);
+			
+			do Sys.wait(100);
+						
 		}
 		return;
 	}
