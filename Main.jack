@@ -13,20 +13,6 @@ class Main
 			return 0;
 		}
 	}
-	function void erase(int p1x, int p1y, int p2x, int p2y, Cat p1, Cat p2)
-	{
-		do Screen.setColor(false);
-		do p1.DrawCat(p1x, p1y);
-		do p2.DrawCat(p2x, p2y);
-		return;
-	}
-	function void draw(int p1x, int p1y, int p2x, int p2y, Cat p1, Cat p2)
-	{
-		do Screen.setColor(true);
-		do p1.DrawCat(p1x, p1y);
-		do p2.DrawCat(p2x, p2y);
-		return;
-	}
 	function void main()
 	{
 		var int p1x;
@@ -54,32 +40,37 @@ class Main
 			if((keycode = 87) & (Main.outside(p1x, p1y + step) = 0))
 			{
 				let keycode = 0;
-			    do Main.erase(p1x, p1y, p2x, p2y, p1, p2);
+			    do p1.draw(p1x, p1y, 0);
+				do p2.draw(p2x, p2y, 0);
 				let p1y = p1y - step;
 				//up w
 			}
 			if((keycode = 83) & (Main.outside(p1x, p1y + step) = 0))
 			{
 				let keycode = 0;
-			    do Main.erase(p1x, p1y, p2x, p2y, p1, p2);
+			    do p1.draw(p1x, p1y, 0);
+				do p2.draw(p2x, p2y, 0);
 				let p1y = p1y + step;
 				//down s
 			}
 		    if((keycode = 65) & (Main.outside(p1x, p1y + step) = 0))
 			{
 				let keycode = 0;
-			    do Main.erase(p1x, p1y, p2x, p2y, p1, p2);
+			    do p1.draw(p1x, p1y, 0);
+				do p2.draw(p2x, p2y, 0);
 				let p1x = p1x - step;
 				//left a
 			}
 			if((keycode = 68) & (Main.outside(p1x, p1y + step) = 0))
 			{
 				let keycode = 0;
-			    do Main.erase(p1x, p1y, p2x, p2y, p1, p2);
+			    do p1.draw(p1x, p1y, 0);
+				do p2.draw(p2x, p2y, 0);
 				let p1x = p1x + step;
 				//right d
 			}
-			do Main.draw(p1x, p1y, p2x, p2y, p1, p2);
+			do p1.draw(p1x, p1y, 1);
+			do p2.draw(p2x, p2y, 1);
 			do Sys.wait(100);
 			
 		}
