@@ -9,7 +9,7 @@ class Kan
 	{
 		let life = 1000;
 		let normalAttack = 50;
-		let step = 5;
+		let step = 15;
 		let status = 0;
 		return this;
 	}

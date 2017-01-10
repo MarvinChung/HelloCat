@@ -14,7 +14,7 @@ class Cat
 		let mana = 500;
 		let status = 0;		
 		let normalAttack = 50;
-		let size = 16;
+//		let size = 16;
 		return this;
 	}
 	method void draw(int x, int y, boolean mode)
