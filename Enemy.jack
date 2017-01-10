@@ -28,8 +28,7 @@ class Enemy
 	method int getstep(){
 		return step;
 	}
-	
-	method void setpos(int inpux, int inputy){
+	method void setpos(int inputx, int inputy){
 		let x = inputx;
 		let y = inputy;
 		return;

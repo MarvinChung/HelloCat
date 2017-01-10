@@ -1,20 +1,15 @@
 class Cat
 {
 	field int life;
-	field int mana;
 	field int status;
-	field String name;
 	field int normalAttack;
-
-	field int size;
-	constructor Cat new(String name1)
+	field int x;
+	field int y;	
+	constructor Cat new()
 	{
-		let name = name1;
 		let life = 1000;
-		let mana = 500;
 		let status = 0;		
 		let normalAttack = 50;
-		let size = 16;
 		return this;
 	}
 	method int suffer(int damage)
@@ -30,6 +25,17 @@ class Cat
 		}			
 	}
 
+	method void setpos(int inputx, int inputy){
+		let x = inputx;
+		let y = inputy;
+		return ;
+	}
+	method int getx(){
+		return x;
+	}
+	method int gety(){
+		return y;
+	}
 	method void draw(int x, int y, boolean mode)
 	{
 		if(mode)

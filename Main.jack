@@ -35,7 +35,6 @@ class Main
 		var int keycode;
 		var int step;
 		var Cat p1;
-		var Enemy small1;
 		var Kan kan1;
 		var int move;
 
@@ -87,13 +86,13 @@ class Main
 			{
 				let move = Main.canmove(kan1x, kan1y, p1x, p1y);
 			}
-			if((Main.outside(kan1x-small1.getstep(),kan1y)=0) & (move = 1))
+			if((Main.outside(kan1x-kan1.getstep(),kan1y)=0) & (move = 1))
 			{
 				do kan1.draw( kan1x, kan1y, 0);
-				let kan1x = kan1x - small1.getstep();
-				//smallenemy walks left	
+				let kan1x = kan1x - kan1.getstep();
+				//kan1enemy walks left	
 			}			
-			if((Main.outside(kan1x-small1.getstep(),kan1y)=0)){
+			if((Main.outside(kan1x-kan1.getstep(),kan1y)=0)){
 				//kill the object	
 				
 			}
