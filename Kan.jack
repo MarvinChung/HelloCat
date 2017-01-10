@@ -2,9 +2,10 @@ class Kan
 {
 	field int life;
 	field int status;
-	field String name;
 	field int normalAttack;
 	field int step;
+	field int x;
+	field int y;
 	constructor Kan new()
 	{
 		let life = 1000;
@@ -28,7 +29,18 @@ class Kan
 	method int getstep(){
 		return step;
 	}
-
+	
+	method void setpos(int inputx, int inputy){
+		let x = inputx;
+		let y = inputy;
+		return ;
+	}
+	method int getx(){
+		return x;
+	}
+	method int gety(){
+		return y;
+	}
 	method void draw(int x, int y, boolean mode)
 	{
 		if(mode)

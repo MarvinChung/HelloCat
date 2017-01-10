@@ -1,4 +1,4 @@
-class Enemy
+class Boss
 {
 	field int life;
 	field int status;
@@ -6,9 +6,10 @@ class Enemy
 	field int step;
 	field int x;
 	field int y;
-	constructor Enemy new()
+	constructor Boss new()
 	{
-		let life = 100;
+		let life = 1000;
+		let status = 0;		
 		let normalAttack = 50;
 		let step = 5;
 		return this;
@@ -28,13 +29,11 @@ class Enemy
 	method int getstep(){
 		return step;
 	}
-	
-	method void setpos(int inpux, int inputy){
+	method void setpos(int inputx, int inputy){	
 		let x = inputx;
 		let y = inputy;
 		return;
 	}
-	
 	method int getx(){
 		return x;
 	}
