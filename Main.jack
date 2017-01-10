@@ -14,11 +14,12 @@ class Main
 		}
 	}
 	function int canmove( int myx, int myy, int p1x, int p1y){
-          if(myx<p1x+50){
-              return 1;   
+          if(myx < p1x + 40)
+		  {
+              return 0;   
           }
           else{
-              return 0;
+              return 1;
           }
      }
 
@@ -34,6 +35,7 @@ class Main
 		var Cat p1;
 		var Enemy small1;
 		var kan kan1;
+		var move;
 
 		let p1x = 30;
 		let small1x = 511 - p1x;
@@ -42,6 +44,7 @@ class Main
 		let p1 = Cat.new("p1");
 		let gameover = 1;
 		let step = 10;
+		let move = 1;
 	
 		let small1 = Enemy.new();
 		let kan1 = kan.new();
@@ -79,7 +82,12 @@ class Main
 			}
 			
 			//for AI
-			if((Main.outside(small1x-small1.getstep(),small1y)=0) & (Main.canmove(small1x,small1y,p1x,p1y))){
+			if(move = 1)
+			{
+				let move = Main.canmove(small1x, small1y, p1x, p1y);
+			}
+			if((Main.outside(small1x-small1.getstep(),small1y)=0) & (move = 1))
+			{
 				do small1.draw( small1x, small1y, 0);
 				let small1x = small1x - small1.getstep();
 				//smallenemy walks left	
