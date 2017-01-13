@@ -1,10 +1,10 @@
-class interface{
-	field int i;
-	field int x;
-	field Kan kan;
-	field Cat cat;
-	field Android android;
+class Interface{
 	function void interface(){
+			var int i;
+			var int x;
+			var Kan kan;
+			var Cat cat;
+//			var Android android;
 		 	let i=0;
 			while(i<512){
 				do Screen.drawPixel(i,70);
@@ -13,10 +13,13 @@ class interface{
 			let x = 60;
 			let kan = Kan.new();
 			let cat = Cat.new();
-			do kan.draw(30,100,1);
-			do cat.draw(30+x,100,1);
-			do android.draw(30+x,100,10);
-			
-			return this;
+//			let android = Android.new();
+			do kan.setpos(30,100);
+			do cat.setpos(30+x,100);
+//			do android.setpos(30+x+x,100);
+			do kan.draw(1);
+			do cat.draw(1);
+//			do android.draw(1);
+			return;
 	}		
 }

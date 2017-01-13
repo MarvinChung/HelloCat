@@ -1,12 +1,17 @@
 class Main
 {
-	function void Main(){
-		Output.printString(Press Enter to start);
-		if(keycode = 13){
-			Interface.interface();
-			Battle.battle();			
+	function void main(){
+		var int keycode;
+		let keycode = Keyboard.keyPressed();
+		do Output.printString("Press Enter to start");
+		while(keycode=0)
+		{
+		let keycode = Keyboard.keyPressed();
+		}
+		do Interface.interface();
+		do Battle.battle();			
 			//press Enter
-		}	
+		return ;	
 	}
 		
 }
