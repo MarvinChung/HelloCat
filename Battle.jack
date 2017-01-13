@@ -1,0 +1,141 @@
+class Battle
+{
+	static Cat p1, p2, p3;
+	static Kan kan1;
+	static int ourfront, ourback, enemyfront, enemyback;
+	
+	function int mod (int a, int b)
+	{
+		return a - (a / b * b);
+	}
+	function Cat cat(int index)
+	{
+		if(index = 1)
+		{
+			return p1;
+		}
+		if(index = 2)
+		{
+			return p2;
+		}
+		else
+		{
+			return p3;
+		}
+	}
+
+	function void battle()
+	{
+		var Cat cattemp;
+		var int gameover;
+		var int keycode;
+		var int move;
+		var int time;
+		var int nowcat;
+		var int i, j;
+
+		let p1 = Cat.new();
+		let p2 = Cat.new();
+		let p3 = Cat.new();
+		let kan1 = Kan.new();
+		let gameover = 1;
+		let move = 1;
+		let time = 0;
+		let nowcat = 1;
+
+		let ourfront = 0;
+		let ourback = 0;
+		let enemyfront = 0;
+		let enemyback = 0;
+	
+		let kan1 = Kan.new();
+		while(gameover = 1)
+		{
+			do kan1.setstatus(1);
+			//for player
+			let keycode = Keyboard.keyPressed();
+			if(keycode = 87)//w
+			{
+				let cattemp = Battle.cat(nowcat);
+				do cattemp.setstatus(1);
+				do cattemp.setpos(30, 127);
+				let nowcat = nowcat + 1;
+				if(nowcat = 4)
+				{
+					let nowcat = 1;
+				}
+			}
+			
+			//for AI
+			do kan1.setstatus(1);
+			do Screen.setColor(0);
+			do Screen.drawRectangle(0, 0, 511, 255);
+			//erase all the screen
+			let i = 1;
+			while(i < 4)
+			{
+				let cattemp = Battle.cat(i);
+				if((cattemp.getstatus() = 1 | cattemp.getstatus() = 2) & (cattemp.getx() < (kan1.getx() - Kan.getAR())))
+				{
+					do kan1.setstatus(2);
+					if(cattemp.suffer(Kan.getNA()) = 0)
+					{
+						do cattemp.setstatus(0);
+					}
+				}
+				if((kan1.getstatus() = 1 | kan1.getstatus() = 2) & (kan1.getx() < (cattemp.getx() + Cat.getAR())))
+				{
+					do cattemp.setstatus(2);
+					if(kan1.suffer(Cat.getNA()) = 0)
+					{
+						do kan1.setstatus(0);
+					}
+				}
+				let i = i + 1;
+			}
+			if(kan1.getstatus() = 1)
+			{
+				do kan1.move();
+				do kan1.draw(1);
+			}
+			if(kan1.getstatus() = 2)
+			{
+				if(Battle.mod(time, 2) < 2)
+				{
+					do kan1.draw(2);
+				}
+				else
+				{
+					do kan1.draw(1);
+				}
+				do kan1.setstatus(1);
+			}
+			let i = 1;
+			while(i < 4)
+			{
+				let cattemp = Battle.cat(i);
+				if(cattemp.getstatus() = 1)
+				{
+					do cattemp.move();
+					do cattemp.draw(1);
+				}
+				if(cattemp.getstatus() = 2)
+				{
+					if(Battle.mod(time, 2) < 2)
+					{
+						do cattemp.draw(2);
+					}
+					else
+					{
+						do cattemp.draw(1);
+					}
+					do cattemp.setstatus(1);
+				}
+				let i = i + 1;
+			}
+			do Sys.wait(100);
+			let time = time + 1;	
+		}
+		return;
+	}
+}

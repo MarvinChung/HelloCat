@@ -2,19 +2,23 @@ class Kan
 {
 	field int life;
 	field int status;
-	field int normalAttack;
-	field int step;
 	field int x;
 	field int y;
 	constructor Kan new()
 	{
 		let life = 1000;
-		let normalAttack = 50;
-		let step = 5;
 		let status = 0;
 		let x = 511 - 30;
 		let y = 127;
 		return this;
+	}
+	function int getNA()
+	{
+		return 50;
+	}
+	function int getAR()
+	{
+		return 40;
 	}
 	method int suffer(int damage)
 	{
@@ -28,10 +32,6 @@ class Kan
 			return 1;
 		}			
 	}
-	method int getstep(){
-		return step;
-	}
-	
 	method void setpos(int inputx, int inputy){
 		let x = inputx;
 		let y = inputy;
@@ -39,7 +39,7 @@ class Kan
 	}
 	method void move()
 	{
-		let x = x - step;
+		let x = x - 5;
 		if(y = 127)
 		{
 			let y = 100;

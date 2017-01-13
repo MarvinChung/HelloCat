@@ -2,17 +2,21 @@ class Cat
 {
 	field int life;
 	field int status;
-	field int normalAttack;
 	field int x;
 	field int y;	
-	field int step;
 	constructor Cat new()
 	{
 		let life = 1000;
 		let status = 0;		
-		let normalAttack = 50;
-		let step = 5;
 		return this;
+	}
+	function int getNA()
+	{
+		return 50;//normalAttack
+	}
+	function int getAR()
+	{
+		return 40;//AttackRange
 	}
 	method int suffer(int damage)
 	{
@@ -34,7 +38,7 @@ class Cat
 	}
 	method void move()
 	{
-		let x = x + step;
+		let x = x + 5;
 		return;
 	}
 	method int getx(){
