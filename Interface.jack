@@ -7,16 +7,16 @@ class Interface{
 //			var Android android;
 		 	let i=0;
 			while(i<512){
-				do Screen.drawPixel(i,70);
+				do Screen.drawPixel(i,155);
 				let i=i+1;
 			}
 			let x = 60;
 			let kan = Kan.new();
 			let cat = Cat.new();
 //			let android = Android.new();
-			do kan.setpos(30,100);
-			do cat.setpos(30+x,100);
-//			do android.setpos(30+x+x,100);
+			do kan.setpos(30,200);
+			do cat.setpos(30+x,200);
+//			do android.setpos(30+x+x,200);
 			do kan.draw(1);
 			do cat.draw(1);
 //			do android.draw(1);
