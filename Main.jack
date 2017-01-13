@@ -1,0 +1,12 @@
+class Main
+{
+	function void Main(){
+		Output.printString(Press Enter to start);
+		if(keycode = 13){
+			Interface.interface();
+			Battle.battle();			
+			//press Enter
+		}	
+	}
+		
+}
