@@ -1,18 +1,5 @@
 class Main
 {
-	function int outside(int x, int y)
-	{
-		var int bound;
-		let bound = 30;
-		if((x < bound) | (x > (511 - bound)) | (y < bound) | (y > (255 - bound)))
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
 	function int canmove(int myx, int myy, int p1x, int p1y)
 	{
           if(myx < (p1x + 40))
@@ -27,79 +14,86 @@ class Main
 
 	function void main()
 	{
-		var int p1x;
-		var int p1y;
 		var int kan1x;
 		var int kan1y;
 		var int gameover;
 		var int keycode;
-		var int step;
-		var Cat p1;
+		var Cat p1, p2, p3;
 		var Kan kan1;
 		var int move;
+		var int count;
 
-		let p1x = 30;
-		let kan1x = 511 - p1x;
-		let p1y = 127;
-		let kan1y = 127;
 		let p1 = Cat.new();
+		let kan1 = Kan.new();
 		let gameover = 1;
-		let step = 10;
 		let move = 1;
+		let count = 0;
 	
 		let kan1 = Kan.new();
 		while(gameover = 1)
 		{
+			do kan1.setstatus(1);
 			//for player
 			let keycode = Keyboard.keyPressed();
-			if((keycode = 87) & (Main.outside(p1x, p1y + step) = 0))
+			if(keycode = 87)//w
 			{
-				let keycode = 0;
-			    do p1.draw(p1x, p1y, 0);
-				let p1y = p1y - step;
-				//up w
-			}
-			if((keycode = 83) & (Main.outside(p1x, p1y + step) = 0))
-			{
-				let keycode = 0;
-			    do p1.draw(p1x, p1y, 0);
-				let p1y = p1y + step;
-				//down s
-			}
-		    if((keycode = 65) & (Main.outside(p1x, p1y + step) = 0))
-			{
-				let keycode = 0;
-			    do p1.draw(p1x, p1y, 0);
-				let p1x = p1x - step;
-				//left a
-			}
-			if((keycode = 68) & (Main.outside(p1x, p1y + step) = 0))
-			{
-				let keycode = 0;
-			    do p1.draw(p1x, p1y, 0);
-				let p1x = p1x + step;
-				//right d
+				do p1.setstatus(1);
+				do p1.setpos(30, 127);
 			}
 			
 			//for AI
 			if(move = 1)
 			{
-				let move = Main.canmove(kan1x, kan1y, p1x, p1y);
+				let move = Main.canmove(kan1.getx(), kan1.gety(), p1.getx(), p1.gety());
 			}
-			if((Main.outside(kan1x-kan1.getstep(),kan1y)=0) & (move = 1))
+			if(move = 0)
 			{
-				do kan1.draw( kan1x, kan1y, 0);
-				let kan1x = kan1x - kan1.getstep();
-				//kan1enemy walks left	
-			}			
-			if((Main.outside(kan1x-kan1.getstep(),kan1y)=0)){
-				//kill the object	
-				
+				do kan1.setstatus(2);
+				do kan1.setpos(kan1.getx(), 127);
+				do p1.setstatus(2);
 			}
-			do p1.draw(p1x, p1y, 1);
-			do kan1.draw(kan1x, kan1y, 1);
+			do Screen.setColor(0);
+			do Screen.drawRectangle(0, 0, 511, 255);
+			//erase all the screen
+			if(kan1.getstatus() = 1)
+			{
+				do kan1.move();
+				do kan1.draw(1);
+			}
+			if(kan1.getstatus() = 2)
+			{
+				if(count < 2)
+				{
+					do kan1.draw(2);
+				}
+				else
+				{
+					do kan1.draw(1);
+				}
+			}
+			if(p1.getstatus() = 1)
+			{
+				do p1.move();
+				do p1.draw(1);
+			}
+			if(p1.getstatus() = 2)
+			{
+				if(count < 2)
+				{
+					do p1.draw(2);
+				}
+				else
+				{
+					do p1.draw(1);
+				}
+
+			}
 			do Sys.wait(100);
-						
+			let count = count + 1;	
+			if(count = 4)
+			{
+				let count = 0;
+			}
 		}
 		return;
 	}
