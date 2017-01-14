@@ -1,143 +1,160 @@
 class Battle
 {
-	static Cat p1, p2, p3;
-	static Kan kan1;
-	static int ourfront, ourback, enemyfront, enemyback;
-	
+	static Animal a0, a1, a2, a3, a4, a5, a6, a7, a8, a9;
+	static int N, time;	
 	function int mod (int a, int b)
 	{
 		return a - (a / b * b);
 	}
-	function Cat cat(int index)
+	function int gettime()
 	{
+		return time;
+	}
+	function Animal animal(int index)
+	{
+		if(index = 0)
+		{
+			return a0;
+		}
 		if(index = 1)
 		{
-			return p1;
+			return a1;
 		}
 		if(index = 2)
 		{
-			return p2;
+			return a2;
+		}
+		if(index = 3)
+		{
+			return a3;
+		}
+		if(index = 4)
+		{
+			return a4;
+		}
+		if(index = 5)
+		{
+			return a5;
+		}
+		if(index = 6)
+		{
+			return a6;
+		}
+		if(index = 7)
+		{
+			return a7;
+		}
+		if(index = 8)
+		{
+			return a8;
 		}
 		else
 		{
-			return p3;
+			return a9;
 		}
 	}
 
 	function void battle()
 	{
-		var Cat cattemp;
+		var Animal ptr1, ptr2, ptr3;
 		var int gameover;
 		var int keycode;
 		var int move;
-		var int time;
-		var int nowcat;
+		var int now;
 		var int i, j;
 		var Currency player1;
 		var Currency player2;
 	
-		let p1 = Cat.new();
-		let p2 = Cat.new();
-		let p3 = Cat.new();
-		let kan1 = Kan.new();
+		let a1 = Animal.new();
+		let a2 = Animal.new();
+		let a3 = Animal.new();
+		let a4 = Animal.new();
+		let a5 = Animal.new();
+		let a6 = Animal.new();
 		let gameover = 1;
-		let move = 1;
 		let time = 0;
-		let nowcat = 1;
+		let now = 0; 
+		let N = 10;
 		let player1 = Currency.new();
 		let player2 = Currency.new();
-
-		let ourfront = 0;
-		let ourback = 0;
-		let enemyfront = 0;
-		let enemyback = 0;
 	
-		let kan1 = Kan.new();
 		while(gameover = 1)
 		{
 			do player1.draw(1);	
 			do player2.draw(2);	
-			do kan1.setstatus(1);
 			//for player
 			let keycode = Keyboard.keyPressed();
 			if(keycode = 87)//w
 			{
-				let cattemp = Battle.cat(nowcat);
-				do cattemp.setstatus(1);
-				do cattemp.setpos(30, 127);
-				let nowcat = nowcat + 1;
-				if(nowcat = 4)
+				let ptr1 = Battle.animal(now);
+				do ptr1.setup(1, 1);
+				let now = now + 1;
+				if(now = N)
 				{
-					let nowcat = 1;
+					let now = 0;
 				}
 			}
-			
-			//for AI
-			do kan1.setstatus(1);
+			if(keycode = 69)//e
+			{
+				let ptr1 = Battle.animal(now);		
+				do ptr1.setup(2, 1);
+				let now = now + 1;
+				if(now = N)
+				{
+					let now = 0;
+				}
+			}	
 			do Screen.setColor(0);
 			do Screen.drawRectangle(310,0,511,154);
 			do Screen.drawRectangle(0, 10, 511, 154);
 			//erase all the screen
-			let i = 1;
-			while(i < 4)
+			let i = 0;
+			while(i < N)
 			{
-				let cattemp = Battle.cat(i);
-				if((cattemp.getstatus() = 1 | cattemp.getstatus() = 2) & (cattemp.getx() < (kan1.getx() - Kan.getAR())))
+				let j = i + 1;
+				while(j < N)
 				{
-					do kan1.setstatus(2);
-					if(cattemp.suffer(Kan.getNA()) = 0)
+					let ptr1 = Battle.animal(i);
+					let ptr2 = Battle.animal(j);
+					if((ptr1.getstatus() < 3) & (ptr2.getstatus() < 3))
 					{
-						do cattemp.setstatus(0);
+						do ptr1.setstatus(1);
+						do ptr2.setstatus(1);
+						if(~(ptr1.getside() = ptr2.getside()))
+						{
+							if(ptr1.getside() = 2)
+							{
+								let ptr3 = ptr1;
+								let ptr1 = ptr2;
+								let ptr2 = ptr3;
+							}
+							if(ptr1.getx() < (ptr2.getx() - ptr2.getAR()))
+							{
+								do ptr2.setstatus(2);
+								if(ptr1.suffer(ptr2.getNA()) = 0)
+								{
+									do ptr1.setstatus(3);
+								}
+							}
+							if(ptr2.getx() < (ptr1.getx() + ptr1.getAR()))
+							{
+								do ptr1.setstatus(2);
+								if(ptr2.suffer(ptr1.getNA()) = 0)
+								{
+									do ptr2.setstatus(3);
+								}
+							}
+						}
 					}
-				}
-				if((kan1.getstatus() = 1 | kan1.getstatus() = 2) & (kan1.getx() < (cattemp.getx() + Cat.getAR())))
-				{
-					do cattemp.setstatus(2);
-					if(kan1.suffer(Cat.getNA()) = 0)
-					{
-						do kan1.setstatus(0);
-					}
+					let j = j + 1;
 				}
 				let i = i + 1;
 			}
-			if(kan1.getstatus() = 1)
+			let i = 0;
+			while(i < N)
 			{
-				do kan1.move();
-				do kan1.draw(1);
-			}
-			if(kan1.getstatus() = 2)
-			{
-				if(Battle.mod(time, 2) < 2)
-				{
-					do kan1.draw(2);
-				}
-				else
-				{
-					do kan1.draw(1);
-				}
-				do kan1.setstatus(1);
-			}
-			let i = 1;
-			while(i < 4)
-			{
-				let cattemp = Battle.cat(i);
-				if(cattemp.getstatus() = 1)
-				{
-					do cattemp.move();
-					do cattemp.draw(1);
-				}
-				if(cattemp.getstatus() = 2)
-				{
-					if(Battle.mod(time, 2) < 2)
-					{
-						do cattemp.draw(2);
-					}
-					else
-					{
-						do cattemp.draw(1);
-					}
-					do cattemp.setstatus(1);
-				}
+				let ptr1 = Battle.animal(i);
+				do ptr1.draw();	
 				let i = i + 1;
 			}
 			do Sys.wait(100);

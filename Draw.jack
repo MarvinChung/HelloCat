@@ -1,0 +1,7 @@
+class Draw
+{
+	function void draw(int side, int type, int mode)
+	{
+		return;
+	}
+}

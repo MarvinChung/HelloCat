@@ -1,0 +1,192 @@
+class Animal
+{
+	field int life;
+	field int status;
+	field int type;
+	field int side;
+	//1 : cat 
+	//2 : kan
+	//3 : android
+	//4 : Pika
+	field int money;
+	field int x;
+	field int y;	
+	constructor Animal new()
+	{
+		let status = 4;
+		return this;
+	}
+	method void setup(int s, int t)
+	{
+		let side = s;
+		let type = t;
+		let status = 1;
+		let life = 1000;
+		if(side = 1)
+		{
+			let x = 30;
+			let y = 127;
+		}
+		else
+		{
+			let x = 511 - 30;
+			let y = 127;
+		}
+		return;
+	}
+	method int getside()
+	{
+		return side;
+	}
+	method int getNA()
+	{
+		if(type = 1)
+		{
+			return 50;
+		}
+		if(type = 2)
+		{
+			return 50;
+		}
+		if(type = 3)
+		{
+			return 50;
+		}
+		else
+		{
+			return 50;
+		}
+	}
+	method int getAR()
+	{
+		if(type = 1)
+		{
+			return 50;
+		}
+		if(type = 2)
+		{
+			return 50;
+		}
+		if(type = 3)
+		{
+			return 50;
+		}
+		else
+		{
+			return 50;
+		}
+	}
+	method int suffer(int damage)
+	{
+		let life = life - damage;
+		if(life < 0 | life = 0)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}			
+	}
+
+	method void setpos(int inputx, int inputy){
+		let x = inputx;
+		let y = inputy;
+		return ;
+	}
+	method void move()
+	{
+		var int stepx;
+		if(type = 1)
+		{
+			let stepx = 5;
+		}
+		if(type = 2)
+		{
+			let stepx = 5;
+			if(y = 127)
+			{
+				let y = 100;
+			}
+			else
+			{
+				if(y = 100)
+				{
+					let y = 91;
+				}
+				else
+				{
+					if(y = 91)
+					{
+						let y = 101;
+					}
+					else
+					{
+						if(y = 101)
+						{
+							let y = 127;
+						}
+					}
+				}
+			}
+		}
+		if(type = 3)
+		{
+			let stepx = 5;
+		}
+
+		if(side = 1)
+		{
+			let x = x + stepx;
+		}
+		else
+		{
+			let x = x - stepx;
+		}
+		return;
+	}
+	method int fly()
+	{
+		if(y < 80)
+		{
+			return 0;
+		}
+		let y = y - 10;
+		return 1;
+	}
+	method int getx(){
+		return x;
+	}
+	method int gety(){
+		return y;
+	}
+	method void setstatus(int s)
+	{
+		let status = s;
+		return;
+	}
+	method int getstatus()
+	{
+		return status;
+	}
+	method void draw()
+	{
+		if(status = 1)
+		{
+			do move();
+			do Draw.draw(side, type, 1);
+		}
+		if(status = 2)
+		{
+			if(Battle.mod(Battle.gettime(), 2) < 2)
+			{
+				do Draw.draw(side, type, 2);	
+			}
+			else
+			{
+				do Draw.draw(side, type, 1);
+			}
+		}
+		return;
+	}
+}
