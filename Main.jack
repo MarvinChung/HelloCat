@@ -3,14 +3,15 @@ class Main
 	function void main(){
 		var int keycode;
 		let keycode = Keyboard.keyPressed();
-		do Output.printString("Press Enter to start");
-		while(keycode=0)
+		do Output.printString("Press W to start");
+		while(~(keycode=87))
 		{
 		let keycode = Keyboard.keyPressed();
 		}
 		do Interface.interface();
 		do Battle.battle();			
 			//press Enter
+		
 		return ;	
 	}
 		

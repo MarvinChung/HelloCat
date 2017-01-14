@@ -33,7 +33,9 @@ class Battle
 		var int time;
 		var int nowcat;
 		var int i, j;
-
+		var Currency player1;
+		var Currency player2;
+	
 		let p1 = Cat.new();
 		let p2 = Cat.new();
 		let p3 = Cat.new();
@@ -42,6 +44,8 @@ class Battle
 		let move = 1;
 		let time = 0;
 		let nowcat = 1;
+		let player1 = Currency.new();
+		let player2 = Currency.new();
 
 		let ourfront = 0;
 		let ourback = 0;
@@ -51,6 +55,8 @@ class Battle
 		let kan1 = Kan.new();
 		while(gameover = 1)
 		{
+			do player1.draw(1);	
+			do player2.draw(2);	
 			do kan1.setstatus(1);
 			//for player
 			let keycode = Keyboard.keyPressed();
@@ -69,7 +75,8 @@ class Battle
 			//for AI
 			do kan1.setstatus(1);
 			do Screen.setColor(0);
-			do Screen.drawRectangle(0, 0, 511, 154);
+			do Screen.drawRectangle(310,0,511,154);
+			do Screen.drawRectangle(0, 10, 511, 154);
 			//erase all the screen
 			let i = 1;
 			while(i < 4)
@@ -134,7 +141,10 @@ class Battle
 				let i = i + 1;
 			}
 			do Sys.wait(100);
-			let time = time + 1;	
+			let time = time + 1;
+			do player1.inc(1);
+			do player2.inc(1);				
+			do Output.moveCursor(0,0);
 		}
 		return;
 	}

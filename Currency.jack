@@ -1,0 +1,32 @@
+class Currency{
+	field int money;
+	constructor Currency new(){
+		let money = 100;
+		return this;
+	}
+	method void consume(int cost){
+		let money = money - cost;
+		return;
+	}
+	method void inc(int amount){
+		if(money+amount>999){
+			let money = 999;
+		}
+		else{
+			let money = money + amount;
+		}
+		return;
+	}
+	method void draw(int type){
+		if(type=1){
+			do Output.printString("1P Animal power:");
+			do Output.printInt(money);			
+			do Output.printChar(" ");
+		}
+		if(type=2){
+			do Output.printString("2P Animal power:");
+			do Output.printInt(money);			
+		}
+		return;
+	}
+}

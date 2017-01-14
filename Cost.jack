@@ -1,0 +1,11 @@
+class Cost{
+	function int cost(int type){
+		if(type=1){
+			//cat
+			return 100;
+		}
+		else{
+			return 0;
+		}
+	}
+}
